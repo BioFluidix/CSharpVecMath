@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1000
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpVecMath", "CSharpVecMath\CSharpVecMath.csproj", "{AB913A11-58E6-48C7-9C90-65EB058B3368}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpVecMathTest", "CSharpVecMathTest\CSharpVecMathTest.csproj", "{731014A6-827C-4701-AE4B-FD354CDCFD88}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AB913A11-58E6-48C7-9C90-65EB058B3368}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB913A11-58E6-48C7-9C90-65EB058B3368}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB913A11-58E6-48C7-9C90-65EB058B3368}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB913A11-58E6-48C7-9C90-65EB058B3368}.Release|Any CPU.Build.0 = Release|Any CPU
+		{731014A6-827C-4701-AE4B-FD354CDCFD88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{731014A6-827C-4701-AE4B-FD354CDCFD88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{731014A6-827C-4701-AE4B-FD354CDCFD88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{731014A6-827C-4701-AE4B-FD354CDCFD88}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D4AAA394-12D3-4E4E-8EE7-EBBA6F007E0F}
+	EndGlobalSection
+EndGlobal
