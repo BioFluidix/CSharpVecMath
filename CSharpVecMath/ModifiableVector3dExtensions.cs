@@ -39,30 +39,33 @@ namespace CSharpVecMath
     {
 
         /// <summary>
-        /// Sets the {@code x} component of this vector.
+        /// Sets the <c>x</c> component of this vector.
         /// </summary>
         ///
-        /// @param x component to set
+        /// <param name="x">component to set</param>
+        /// 
         public static void setX(this IModifiableVector3d vector, double x)
         {
             vector.set(0, x);
         }
 
         /// <summary>
-        /// Sets the {@code y} component of this vector.
+        /// Sets the <c>y</c> component of this vector.
         /// </summary>
         ///
-        /// @param y component to set
+        /// <param name="y">component to set</param>
+        /// 
         public static void setY(this IModifiableVector3d vector, double y)
         {
             vector.set(1, y);
         }
 
         /// <summary>
-        /// Sets the {@code z} component of this vector.
+        /// Sets the <c>z</c> component of this vector.
         /// </summary>
         ///
-        /// @param z component to set
+        /// <param name="z">component to set</param>
+        /// 
         public static void setZ(this IModifiableVector3d vector, double z)
         {
             vector.set(2, z);
@@ -71,12 +74,13 @@ namespace CSharpVecMath
         /// <summary>
         /// Adds the specified vector to this vector.
         /// </summary>
+        /// <remarks>
+        /// This vector is <b>not modified</b>.
+        /// </remarks>
         ///
-        /// @param v the vector to add
-        ///
-        /// <b>Note:</b> this vector <b>is</b> not modified.
-        ///
-        /// @return this vector
+        /// <param name="v">the vector to add</param>
+        /// <returns>this vector</returns>
+        /// 
         public static IModifiableVector3d add(this IModifiableVector3d vector, IVector3d v)
         {
             vector.setX(vector.x() + v.x());
@@ -89,14 +93,15 @@ namespace CSharpVecMath
         /// <summary>
         /// Adds the specified vector to this vector.
         /// </summary>
+        /// <remarks>
+        /// This vector is <b>modified</b>.
+        /// </remarks>
         ///
-        /// @param x x coordinate of the vector to add
-        /// @param y y coordinate of the vector to add
-        /// @param z z coordinate of the vector to add
-        ///
-        /// <b>Note:</b> this vector <b>is</b> modified.
-        ///
-        /// @return this vector
+        /// <param name="x">x coordinate of the vector to add</param>
+        /// <param name="y">y coordinate of the vector to add</param>
+        /// <param name="z">z coordinate of the vector to add</param>
+        /// <returns>this vector</returns>
+        /// 
         public static IModifiableVector3d add(this IModifiableVector3d vector, double x, double y, double z)
         {
             vector.setX(vector.x() + x);
@@ -109,11 +114,13 @@ namespace CSharpVecMath
         /// <summary>
         /// Subtracts the specified vector from this vector.
         /// </summary>
+        /// <remarks>
+        /// This vector is <b>modified</b>.
+        /// </remarks>
         ///
-        /// <b>Note:</b> this vector <b>is</b> modified.
-        ///
-        /// @param v vector to subtract
-        /// @return this vector
+        /// <param name="v">vector to subtract</param>
+        /// <returns>this vector</returns>
+        /// 
         public static IModifiableVector3d subtract(this IModifiableVector3d vector, IVector3d v)
         {
             vector.setX(vector.x() - v.x());
@@ -126,14 +133,15 @@ namespace CSharpVecMath
         /// <summary>
         /// Subtracts the specified vector from this vector.
         /// </summary>
+        /// <remarks>
+        /// This vector is <b>modified</b>.
+        /// </remarks>
         ///
-        /// <b>Note:</b> this vector <b>is</b> modified.
-        ///
-        /// @param x x coordinate of the vector to subtract
-        /// @param y y coordinate of the vector to subtract
-        /// @param z z coordinate of the vector to subtract
-        ///
-        /// @return this vector
+        /// <param name="x">x coordinate of the vector to subtract</param>
+        /// <param name="y">y coordinate of the vector to subtract</param>
+        /// <param name="z">z coordinate of the vector to subtract</param>
+        /// <returns>this vector</returns>
+        /// 
         public static IModifiableVector3d subtract(this IModifiableVector3d vector, double x, double y, double z)
         {
             vector.setX(vector.x() - x);
@@ -146,12 +154,13 @@ namespace CSharpVecMath
         /// <summary>
         /// Multiplies this vector with the specified value.
         /// </summary>
+        /// <remarks>
+        /// This vector is <b>modified</b>.
+        /// </remarks>
         ///
-        /// @param a the value
-        ///
-        /// <b>Note:</b> this vector <b>is</b> modified.
-        ///
-        /// @return this vector
+        /// <param name="a">the value</param>
+        /// <returns>this vector</returns>
+        /// 
         public static IModifiableVector3d multiply(this IModifiableVector3d vector, double a)
         {
             vector.setX(vector.x() * a);
@@ -164,12 +173,13 @@ namespace CSharpVecMath
         /// <summary>
         /// Multiplies this vector with the specified vector.
         /// </summary>
+        /// <remarks>
+        /// This vector is <b>modified</b>.
+        /// </remarks>
         ///
-        /// @param a the vector
-        ///
-        /// <b>Note:</b> this vector <b>is</b> modified.
-        ///
-        /// @return this vector
+        /// <param name="a">the vector</param>
+        /// <returns>this vector</returns>
+        /// 
         public static IModifiableVector3d multiply(this IModifiableVector3d vector, IVector3d a)
         {
             vector.setX(vector.x() * a.x());
@@ -182,12 +192,13 @@ namespace CSharpVecMath
         /// <summary>
         /// Devides this vector with the specified value.
         /// </summary>
+        /// <remarks>
+        /// This vector is <b>modified</b>.
+        /// </remarks>
         ///
-        /// @param a the value
-        ///
-        /// <b>Note:</b> this vector <b>is</b> modified.
-        ///
-        /// @return this vector
+        /// <param name="a">the value</param>
+        /// <returns>this vector</returns>
+        /// 
         public static IModifiableVector3d divide(this IModifiableVector3d vector, double a)
         {
             vector.setX(vector.x() / a);
@@ -200,12 +211,13 @@ namespace CSharpVecMath
         /// <summary>
         /// Divides this vector with the specified vector.
         /// </summary>
+        /// <remarks>
+        /// This vector is <b>modified</b>.
+        /// </remarks>
         ///
-        /// @param v the vector
-        ///
-        /// <b>Note:</b> this vector <b>is</b> modified.
-        ///
-        /// @return this vector
+        /// <param name="v">the vector</param>
+        /// <returns>this vector</returns>
+        /// 
         public static IModifiableVector3d divide(this IModifiableVector3d vector, IVector3d v)
         {
             vector.setX(vector.x() / v.x());
@@ -219,12 +231,13 @@ namespace CSharpVecMath
         /// Stores the cross product of this vector and the specified vector in this
         /// vector.
         /// </summary>
+        /// <remarks>
+        /// This vector is <b>modified</b>.
+        /// </remarks>
         ///
-        /// <b>Note:</b> this vector <b>is</b>modified.
-        ///
-        /// @param a the vector
-        ///
-        /// @return this vector
+        /// <param name="a">the vector</param>
+        /// <returns>this vector</returns>
+        /// 
         public static IModifiableVector3d cross(this IModifiableVector3d vector, IVector3d a)
         {
             vector.setX(vector.y() * a.z() - vector.z() * a.y());
@@ -237,22 +250,26 @@ namespace CSharpVecMath
         /// <summary>
         /// Negates this vector.
         /// </summary>
+        /// <remarks>
+        /// This vector is <b>modified</b>.
+        /// </remarks>
         ///
-        /// <b>Note:</b> this vector <b>is</b> modified.
-        ///
-        /// @return this vector
+        /// <returns>this vector</returns>
+        /// 
         public static IModifiableVector3d negate(this IModifiableVector3d vector)
         {
             return vector.multiply(-1.0);
         }
 
         /// <summary>
-        /// Normalizes this vector with length {@code 1}.
+        /// Normalizes this vector with length <c>1</c>.
         /// </summary>
+        /// <remarks>
+        /// This vector is <b>modified</b>.
+        /// </remarks>
         ///
-        /// <b>Note:</b> this vector <b>is</b> modified.
-        ///
-        /// @return this vector
+        /// <returns>this vector</returns>
+        /// 
         public static IModifiableVector3d normalize(this IModifiableVector3d vector)
         {
             return vector.divide(vector.magnitude());

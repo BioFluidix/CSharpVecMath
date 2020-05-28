@@ -41,21 +41,22 @@ namespace CSharpVecMath
     /// <summary>
     /// Spline base class for 1, 2 and 3 dimensional spline curves.
     /// </summary>
-    /// @author Michael Hoffer (info@michaelhoffer.de)
+    /// 
+    /// author: Michael Hoffer (info@michaelhoffer.de)
     /// 
     public abstract class Spline
     {
 
         /// <summary>
         /// This is a highly improved version of the following code: based on
-        /// http://www.java-gaming.org/index.php?topic=9830.20
-        /// 
+        /// <see href="http://www.java-gaming.org/index.php?topic=9830.20"/>.
         /// Does not rely on reflection for switching vector components based on
-        /// dimension
+        /// dimension.
         /// </summary>
-        /// @param valueCollection
-        /// @param coordIndex
-        /// @param cubicCollection
+        /// 
+        /// <param name="valueCollection"></param>
+        /// <param name="coordIndex"></param>
+        /// <param name="cubicCollection"></param>
         /// 
         public void calcNaturalCubic(List<IVector3d> valueCollection, int coordIndex,
                 List<Cubic> cubicCollection)

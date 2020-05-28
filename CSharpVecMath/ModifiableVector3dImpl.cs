@@ -38,7 +38,9 @@ namespace CSharpVecMath
     /// <summary>
     /// Modifiable 3d vector.
     /// </summary>
-    /// @author Michael Hoffer (info@michaelhoffer.de)
+    /// 
+    /// author: Michael Hoffer (info@michaelhoffer.de)
+    /// 
     public sealed class ModifiableVector3dImpl : Vector3dImpl, IModifiableVector3d
     {
 

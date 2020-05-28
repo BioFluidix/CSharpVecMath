@@ -38,9 +38,11 @@ using System;
 namespace CSharpVecMath
 {
     /// <summary>
-    ///
-    /// @author Michael Hoffer &lt;info@michaelhoffer.de&gt;
+    /// 
     /// </summary>
+    /// 
+    /// author: Michael Hoffer &lt;info@michaelhoffer.de&gt;
+    /// 
     public class Vector3dImpl : IVector3d, IEquatable<Vector3dImpl>
     {
 
@@ -52,9 +54,10 @@ namespace CSharpVecMath
         /// Creates a new vector.
         /// </summary>
         ///
-        /// @param x x value
-        /// @param y y value
-        /// @param z z value
+        /// <param name="x">x value</param>
+        /// <param name="y">y value</param>
+        /// <param name="z">z value</param>
+        /// 
         public Vector3dImpl(double x, double y, double z)
         {
 
@@ -64,19 +67,14 @@ namespace CSharpVecMath
         }
 
         /// <summary>
-        /// Creates a new vector with specified {@code x}, {@code y} and
-        /// {@code z = 0}.
+        /// Creates a new vector with specified <c>x</c>, <c>y</c> and
+        /// <c>z = 0</c>.
         /// </summary>
         ///
-        /// @param x x value
-        /// @param y y value
-        public Vector3dImpl(double x, double y)
-        {
-
-            this.x = x;
-            this.y = y;
-            this.z = 0;
-        }
+        /// <param name="x">x value</param>
+        /// <param name="y">y value</param>
+        /// 
+        public Vector3dImpl(double x, double y) :this(x, y, 0){ }
 
 
 

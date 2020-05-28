@@ -34,52 +34,47 @@
  */
 
 using System;
+using System.Globalization;
 using System.Text;
 
 namespace CSharpVecMath
 {
+    /// <summary>
+    /// This class provides the mathematical operations for all
+    /// vector3d classes.
+    /// </summary>
     public static class Vector3dExtensions
     {
-        ///<summary>
-        /// Returns the angle between this and the specified vector.
-        ///</summary>
+
+        /// <summary>
+        /// Returns a modifiable copy of this vector.
+        /// </summary>
         ///
-        /// @param IVector3d vector
-        /// @return angle in degrees
-        public static double angle(this IVector3d vector, IVector3d v)
+        /// <returns>a modifiable copy of this vector</returns>
+        /// 
+        public static IModifiableVector3d asModifiable(this IVector3d vector)
         {
-            double val = vector.dot(v) / (vector.magnitude() * v.magnitude());
-            return Math.Acos(Math.Max(Math.Min(val, 1), -1)) * 180.0 / Math.PI; // compensate rounding errors
+            return new ModifiableVector3dImpl(vector.x(), vector.y(), vector.z());
         }
 
-        ///<summary>
-        /// Returns the distance between the specified point and this point.
-        ///</summary>
+        /// <summary>
+        /// Returns the components <c>x,y,z</c> as double array.
+        /// </summary>
         ///
-        /// @param p point
-        /// @return the distance between the specified point and this point
-        public static double distance(this IVector3d vector, IVector3d p)
-        {
-            return vector.minus(p).magnitude();
-        }
-
-
-        ///<summary>
-        /// Returns the components {code x,y,z} as double array.
-        ///</summary>
-        ///
-        /// @return the components {code x,y,z} as double array
+        /// <returns>the components <c>code x,y,z</c> as double array</returns>
+        /// 
         public static double[] get(this IVector3d vector)
         {
             return new double[] { vector.x(), vector.y(), vector.z() };
         }
 
-        ///<summary>
+        /// <summary>
         /// Returns the i-th component of this vector.
-        ///</summary>
+        /// </summary>
         ///
-        /// @param i component index
-        /// @return the i-th component of this vector
+        /// <param name="i">component index</param>
+        /// <returns>the i-th component of this vector</returns>
+        /// 
         public static double get(this IVector3d vector, int i)
         {
             switch (i)
@@ -95,251 +90,252 @@ namespace CSharpVecMath
             }
         }
 
-        ///<summary>
+        /// <summary>
         /// Returns the x component of this vector
-        ///</summary>
+        /// </summary>
         ///
-        /// @return x component of this vector
+        /// <returns>x component of this vector</returns>
+        /// 
         public static double x(this IVector3d vector)
         {
             return vector.getX();
         }
 
-        ///<summary>
+        /// <summary>
         /// Returns the y component of this vector
-        ///</summary>
+        /// </summary>
         ///
-        /// @return y component of this vector
+        /// <returns>y component of this vector</returns>
+        /// 
         public static double y(this IVector3d vector)
         {
             return vector.getY();
         }
 
-        ///<summary>
+        /// <summary>
         /// Returns the z component of this vector
-        ///</summary>
+        /// </summary>
         ///
-        /// @return z component of this vector
+        /// <returns>z component of this vector</returns>
+        /// 
         public static double z(this IVector3d vector)
         {
             return vector.getZ();
         }
 
-        ///<summary>
-        /// Returns a negated copy of this vector.
-        ///</summary>
-        ///
-        /// <b>Note:</b> this vector is not modified.
-        ///
-        /// @return a negated copy of this vector
-        public static IVector3d negated(this IVector3d vector)
-        {
-            return new Vector3dImpl(-vector.x(), -vector.y(), -vector.z());
-        }
-
-        ///<summary>
+        /// <summary>
         /// Returns the sum of this vector and the specified vector.
-        ///</summary>
+        /// </summary>
+        /// <remarks>
+        /// This vector is <b>not modified.</b>
+        /// </remarks>
         ///
-        /// @param IVector3d the vector to add
-        ///
-        /// <b>Note:</b> this vector is not modified.
-        ///
-        /// @return the sum of this vector and the specified vector
-        public static IVector3d plus(this IVector3d vector, IVector3d v)
-        {
-            return new Vector3dImpl(vector.x() + v.x(), vector.y() + v.y(), vector.z() + v.z());
-        }
-
-        ///<summary>
-        /// Returns the difference of this vector and the specified vector.
-        ///</summary>
-        ///
-        /// @param IVector3d the vector to subtract
-        ///
-        /// <b>Note:</b> this vector is not modified.
-        ///
-        /// @return the difference of this vector and the specified vector
-        public static IVector3d minus(this IVector3d vector, IVector3d v)
-        {
-            return new Vector3dImpl(vector.x() - v.x(), vector.y() - v.y(), vector.z() - v.z());
-        }
-
-        ///<summary>
-        /// Returns the product of this vector and the specified value.
-        ///</summary>
-        ///
-        /// @param a the value
-        ///
-        /// <b>Note:</b> this vector is not modified.
-        ///
-        /// @return the product of this vector and the specified value
-        public static IVector3d times(this IVector3d vector, double a)
-        {
-            return new Vector3dImpl(vector.x() * a, vector.y() * a, vector.z() * a);
-        }
-
-        ///<summary>
-        /// Returns the product of this vector and the specified vector.
-        ///</summary>
-        ///
-        /// @param a the vector
-        ///
-        /// <b>Note:</b> this vector is not modified.
-        ///
-        /// @return the product of this vector and the specified vector
-        public static IVector3d times(this IVector3d vector, IVector3d a)
-        {
-            return new Vector3dImpl(vector.x() * a.x(), vector.y() * a.y(), vector.z() * a.z());
-        }
-
-        ///<summary>
-        /// Returns the sum of this vector and the specified vector.
-        ///</summary>
-        ///
-        /// @param IVector3d the vector to add
-        ///
-        /// <b>Note:</b> this vector is not modified.
-        ///
-        /// @return the sum of this vector and the specified vector
+        /// <param name="IVector3d">the vector to add</param>
+        /// <returns>the sum of this vector and the specified vector</returns>
+        /// 
         public static IVector3d added(this IVector3d vector, IVector3d v)
         {
             return new Vector3dImpl(vector.x() + v.x(), vector.y() + v.y(), vector.z() + v.z());
         }
 
-        ///<summary>
+        /// <summary>
+        /// Returns the sum of this vector and the specified vector.
+        /// </summary>
+        /// <remarks>
+        /// This vector is <b>not modified</b>.
+        /// </remarks>
+        ///
+        /// <param name="IVector3d">the vector to add</param>
+        /// <returns>the sum of this vector and the specified vector</returns>
+        /// 
+        public static IVector3d plus(this IVector3d vector, IVector3d v)
+        {
+            return new Vector3dImpl(vector.x() + v.x(), vector.y() + v.y(), vector.z() + v.z());
+        }
+
+        /// <summary>
+        /// Returns the sum of this vector and the specified vector.
+        /// </summary>
+        /// <remarks>
+        /// This vector is <b>not modified.</b>
+        /// </remarks>
+        /// 
+        /// <param name="x">x coordinate of the vector to add</param>
+        /// <param name="y">y coordinate of the vector to add</param>
+        /// <param name="z">z coordinate of the vector to add</param>
+        /// <returns>the sum of this vector and the specified vector</returns>
+        /// 
+        public static IVector3d plus(this IVector3d vector, double x, double y, double z)
+        {
+            return Vector3d.xyz(vector.x() + x, vector.y() + y, vector.z() + z);
+        }
+
+        /// <summary>
         /// Returns the difference of this vector and the specified vector.
-        ///</summary>
+        /// </summary>
+        /// <remarks>
+        /// This vector is <b>not modified.</b>
+        /// </remarks>
         ///
-        /// @param IVector3d the vector to subtract
-        ///
-        /// <b>Note:</b> this vector is not modified.
-        ///
-        /// @return the difference of this vector and the specified vector
+        /// <param name="IVector3d">the vector to subtract</param>
+        /// <returns>the difference of this vector and the specified vector</returns>
+        /// 
         public static IVector3d subtracted(this IVector3d vector, IVector3d v)
         {
             return new Vector3dImpl(vector.x() - v.x(), vector.y() - v.y(), vector.z() - v.z());
         }
 
-        ///<summary>
+        /// <summary>
+        /// Returns the difference of this vector and the specified vector.
+        /// </summary>
+        /// <remarks>
+        /// This vector is <b>not modified.</b>
+        /// </remarks>
+        ///
+        /// <param name="IVector3d">the vector to subtract</param>
+        /// <returns>the difference of this vector and the specified vector</returns>
+        /// 
+        public static IVector3d minus(this IVector3d vector, IVector3d v)
+        {
+            return new Vector3dImpl(vector.x() - v.x(), vector.y() - v.y(), vector.z() - v.z());
+        }
+
+        /// <summary>
+        /// Returns the difference of this vector and the specified vector.
+        /// </summary>
+        /// <remarks>
+        /// This vector is <b>not modified.</b>
+        /// </remarks>
+        ///
+        /// <param name="x">x coordinate of the vector to subtract</param>
+        /// <param name="y">y coordinate of the vector to subtract</param>
+        /// <param name="z">z coordinate of the vector to subtract</param>
+        /// <returns>the difference of this vector and the specified vector</returns>
+        /// 
+        public static IVector3d minus(this IVector3d vector, double x, double y, double z)
+        {
+            return Vector3d.xyz(vector.x() - x, vector.y() - y, vector.z() - z);
+        }
+
+        /// <summary>
         /// Returns the product of this vector and the specified value.
-        ///</summary>
+        /// </summary>
+        /// <remarks>
+        /// This vector is <b>not modified.</b>
+        /// </remarks>
         ///
-        /// @param a the value
+        /// <param name="a">the value</param>
+        /// <returns>the product of this vector and the specified value</returns>
+        /// 
+        public static IVector3d times(this IVector3d vector, double a)
+        {
+            return new Vector3dImpl(vector.x() * a, vector.y() * a, vector.z() * a);
+        }
+
+        /// <summary>
+        /// Returns the product of this vector and the specified vector.
+        /// </summary>
+        /// <remarks>
+        /// This vector is <b>not modified.</b>
+        /// </remarks>
         ///
-        /// <b>Note:</b> this vector is not modified.
+        /// <param name="a">the vector</param>
+        /// <returns>the product of this vector and the specified vector</returns>
+        /// 
+        public static IVector3d times(this IVector3d vector, IVector3d a)
+        {
+            return new Vector3dImpl(vector.x() * a.x(), vector.y() * a.y(), vector.z() * a.z());
+        }
+
+        /// <summary>
+        /// Returns the product of this vector and the specified vector.
+        /// </summary>
+        /// <remarks>
+        /// This vector is <b>not modified.</b>
+        /// </remarks>
         ///
-        /// @return the product of this vector and the specified value
+        /// <param name="x">x coordinate of the vector to multiply</param>
+        /// <param name="y">y coordinate of the vector to multiply</param>
+        /// <param name="z">z coordinate of the vector to multiply</param>
+        /// <returns>the product of this vector and the specified vector</returns>
+        /// 
+        public static IVector3d times(this IVector3d vector, double x, double y, double z)
+        {
+            return Vector3d.xyz(vector.x() * x, vector.y() * y, vector.z() * z);
+        }
+
+        /// <summary>
+        /// Returns the product of this vector and the specified value.
+        /// </summary>
+        /// <remarks>
+        /// This vector is <b>not modified.</b>
+        /// </remarks>
+        ///
+        /// <param name="a">the value</param>
+        /// <returns>the product of this vector and the specified value</returns>
+        /// 
         public static IVector3d multiplied(this IVector3d vector, double a)
         {
             return new Vector3dImpl(vector.x() * a, vector.y() * a, vector.z() * a);
         }
 
-        ///<summary>
+        /// <summary>
         /// Returns the product of this vector and the specified vector.
-        ///</summary>
+        /// </summary>
+        /// <remarks>
+        /// This vector is <b>not modified.</b>
+        /// </remarks>
         ///
-        /// @param a the vector
-        ///
-        /// <b>Note:</b> this vector is not modified.
-        ///
-        /// @return the product of this vector and the specified vector
+        /// <param name="a">the vector</param>
+        /// <returns>the product of this vector and the specified vector</returns>
+        /// 
         public static IVector3d multiplied(this IVector3d vector, IVector3d a)
         {
             return new Vector3dImpl(vector.x() * a.x(), vector.y() * a.y(), vector.z() * a.z());
         }
 
 
-        ///<summary>
+        /// <summary>
         /// Returns this vector divided by the specified value.
-        ///</summary>
+        /// </summary>
+        /// <remarks>
+        /// This vector is <b>not modified.</b>
+        /// </remarks>
         ///
-        /// @param a the value
-        ///
-        /// <b>Note:</b> this vector is not modified.
-        ///
-        /// @return this vector divided by the specified value
+        /// <param name="a">the value</param>
+        /// <returns>this vector divided by the specified value</returns>
+        /// 
         public static IVector3d divided(this IVector3d vector, double a)
         {
             return new Vector3dImpl(vector.x() / a, vector.y() / a, vector.z() / a);
         }
 
-        ///<summary>
+
+        /// <summary>
         /// Returns the dot product of this vector and the specified vector.
-        ///</summary>
+        /// </summary>
+        /// <remarks>
+        /// This vector is <b>not modified.</b>
+        /// </remarks>
         ///
-        /// <b>Note:</b> this vector is not modified.
-        ///
-        /// @param a the second vector
-        ///
-        /// @return the dot product of this vector and the specified vector
+        /// <param name="a">the second vector</param>
+        /// <returns>the dot product of this vector and the specified vector</returns>
+        /// 
         public static double dot(this IVector3d vector, IVector3d a)
         {
             return vector.x() * a.x() + vector.y() * a.y() + vector.z() * a.z();
         }
 
-        ///<summary>
-        /// Linearly interpolates between this and the specified vector.
-        ///</summary>
-        ///
-        /// <b>Note:</b> this vector is not modified.
-        ///
-        /// @param a vector
-        /// @param t interpolation value
-        ///
-        /// @return copy of this vector if {@code t = 0}; copy of a if {@code t = 1};
-        /// the point midway between this and the specified vector if {@code t = 0.5}
-        public static IVector3d lerp(this IVector3d vector, IVector3d a, double t)
-        {
-            return vector.plus(a.minus(vector).times(t));
-        }
-
-        ///<summary>
-        /// Returns the magnitude of this vector.
-        ///</summary>
-        ///
-        /// <b>Note:</b> this vector is not modified.
-        ///
-        /// @return the magnitude of this vector
-        public static double magnitude(this IVector3d vector)
-        {
-            return Math.Sqrt(vector.dot(vector));
-        }
-
-        ///<summary>
-        /// Returns the squared magnitude of this vector
-        /// (<code>vector.dot(this)</code>).
-        ///</summary>
-        ///
-        /// <b>Note:</b> this vector is not modified.
-        ///
-        /// @return the squared magnitude of this vector
-        public static double magnitudeSq(this IVector3d vector)
-        {
-            return vector.dot(vector);
-        }
-
-        ///<summary>
-        /// Returns a normalized copy of this vector with length {@code 1}.
-        ///</summary>
-        ///
-        /// <b>Note:</b> this vector is not modified.
-        ///
-        /// @return a normalized copy of this vector with length {@code 1}
-        public static IVector3d normalized(this IVector3d vector)
-        {
-            return vector.divided(vector.magnitude());
-        }
-
-        ///<summary>
+        /// <summary>
         /// Returns the cross product of this vector and the specified vector.
-        ///</summary>
+        /// </summary>
+        /// <remarks>
+        /// This vector is <b>not modified.</b>
+        /// </remarks>
         ///
-        /// <b>Note:</b> this vector is not modified.
-        ///
-        /// @param a the vector
-        ///
-        /// @return the cross product of this vector and the specified vector.
+        /// <param name="a">the vector</param>
+        /// <returns>the cross product of this vector and the specified vector.</returns>
+        /// 
         public static IVector3d crossed(this IVector3d vector, IVector3d a)
         {
             return new Vector3dImpl(
@@ -349,155 +345,126 @@ namespace CSharpVecMath
             );
         }
 
-        ///<summary>
-        /// Returns this vector in STL string format.
-        ///</summary>
-        ///
-        /// @return this vector in STL string format
-        public static string toStlString(this IVector3d vector)
-        {
-            return vector.toStlString(new StringBuilder()).ToString();
-        }
 
-        ///<summary>
-        /// Returns this vector in STL string format.
-        ///</summary>
+        /// <summary>
+        /// Returns the magnitude of this vector.
+        /// </summary>
+        /// <remarks>
+        /// This vector is <b>not modified.</b>
+        /// </remarks>
         ///
-        /// @param sb string builder
-        /// @return the specified string builder
-        public static StringBuilder toStlString(this IVector3d vector, StringBuilder sb)
-        {
-            return sb.Append(vector.x()).Append(" ").
-                    Append(vector.y()).Append(" ").
-                    Append(vector.z());
-        }
-
-        ///<summary>
-        /// Returns this vector in OBJ string format.
-        ///</summary>
-        ///
-        /// @return this vector in OBJ string format
-        public static string toObjString(this IVector3d vector)
-        {
-            return vector.toObjString(new StringBuilder()).ToString();
-        }
-
-        ///<summary>
-        /// Returns this vector in OBJ string format.
-        ///</summary>
-        ///
-        /// @param sb string builder
-        /// @return the specified string builder
-        public static StringBuilder toObjString(this IVector3d vector, StringBuilder sb)
-        {
-            return sb.Append(vector.x()).Append(" ").
-                    Append(vector.y()).Append(" ").
-                    Append(vector.z());
-        }
-
-        ///<summary>
-        /// Returns a transformed copy of this vector.
-        ///</summary>
-        ///
-        /// @param transform the transform to apply
-        ///
-        /// <b>Note:</b> this vector is not modified.
+        /// <returns>the magnitude of this vector</returns>
         /// 
-        /// @param amount 
-        ///
-        /// @return a transformed copy of this vector
-        public static IVector3d transformed(this IVector3d vector, Transform transform, double amount)
+        public static double magnitude(this IVector3d vector)
         {
-            return transform.transform(vector.asModifiable(), amount);
+            return Math.Sqrt(vector.dot(vector));
         }
 
-        ///<summary>
+        /// <summary>
+        /// Returns the squared magnitude of this vector
+        /// (<c>vector.dot(this)</c>).
+        /// </summary>
+        /// <remarks>
+        /// This vector is <b>not modified.</b>
+        /// </remarks>
+        ///
+        /// <returns>the squared magnitude of this vector</returns>
+        /// 
+        public static double magnitudeSq(this IVector3d vector)
+        {
+            return vector.dot(vector);
+        }
+
+        /// <summary>
+        /// Returns a normalized copy of this vector with length <c>1</c>.
+        /// </summary>
+        /// <remarks>
+        /// This vector is <b>not modified.</b>
+        /// </remarks>
+        ///
+        /// <returns>a normalized copy of this vector with length <c>1</c></returns>
+        /// 
+        public static IVector3d normalized(this IVector3d vector)
+        {
+            return vector.divided(vector.magnitude());
+        }
+
+        /// <summary>
+        /// Returns a negated copy of this vector.
+        /// </summary>
+        /// <remarks>
+        /// This vector is <b>not modified</b>.
+        /// </remarks>
+        ///
+        /// <returns>a negated copy of this vector</returns>
+        /// 
+        public static IVector3d negated(this IVector3d vector)
+        {
+            return new Vector3dImpl(-vector.x(), -vector.y(), -vector.z());
+        }
+
+        /// <summary>
         /// Returns a new vector which is orthogonal to this vector.
-        ///</summary>
-        /// @return a new vector which is orthogonal to this vector
+        /// </summary>
+        /// 
+        /// <returns>a new vector which is orthogonal to this vector</returns>
+        /// 
         public static IVector3d orthogonal(this IVector3d vector)
         {
             return Math.Abs(vector.z()) < Math.Abs(vector.x()) ? Vector3d.xy(vector.y(), -vector.x()) : Vector3d.yz(-vector.z(), vector.y());
         }
 
-        ///<summary>
-        /// Returns a modifiable copy of this vector.
-        ///</summary>
+
+        /// <summary>
+        /// Calculates the angle between this and the specified vector.
+        /// </summary>
         ///
-        /// @return a modifiable copy of this vector
-        public static IModifiableVector3d asModifiable(this IVector3d vector)
+        /// <param name="IVector3d">vector</param>
+        /// <returns>angle in degrees</returns>
+        /// 
+        public static double angle(this IVector3d vector, IVector3d v)
         {
-            return new ModifiableVector3dImpl(vector.x(), vector.y(), vector.z());
+            double val = vector.dot(v) / (vector.magnitude() * v.magnitude());
+            return Math.Acos(Math.Max(Math.Min(val, 1), -1)) * 180.0 / Math.PI; // compensate rounding errors
         }
 
-        ///<summary>
-        /// Returns a transformed copy of this vector.
-        ///</summary>
-        /// <b>Note:</b> this vector is not modified.
+        /// <summary>
+        /// Calculates the distance between the specified point and this point.
+        /// </summary>
         ///
-        /// @param transform the transform to apply
-        ///
-        ///
-        /// @return a transformed copy of this vector
-        public static IVector3d transformed(this IVector3d vector, Transform transform)
+        /// <param name="p">point</param>
+        /// <returns>the distance between the specified point and this point</returns>
+        /// 
+        public static double distance(this IVector3d vector, IVector3d p)
         {
-            return transform.transform(vector.asModifiable());
+            return vector.minus(p).magnitude();
         }
 
-        ///<summary>
-        /// Returns the sum of this vector and the specified vector.
-        ///</summary>
+
+        /// <summary>
+        /// Linearly interpolates between this and the specified vector.
+        /// </summary>
+        /// <remarks>
+        /// This vector is <b>not modified.</b>
+        /// </remarks>
         ///
-        /// <b>Note:</b> this vector is not modified.
-        /// @param x x coordinate of the vector to add
-        /// @param y y coordinate of the vector to add
-        /// @param z z coordinate of the vector to add
-        ///
-        ///
-        /// @return the sum of this vector and the specified vector
-        public static IVector3d plus(this IVector3d vector, double x, double y, double z)
+        /// <param name="a">vector</param>
+        /// <param name="t">interpolation value</param>
+        /// <returns>copy of this vector if <c>t = 0</c>; copy of a if <c>t = 1</c>;
+        /// the point midway between this and the specified vector if <c>t = 0.5</c></returns>
+        /// 
+        public static IVector3d lerp(this IVector3d vector, IVector3d a, double t)
         {
-            return Vector3d.xyz(vector.x() + x, vector.y() + y, vector.z() + z);
+            return vector.plus(a.minus(vector).times(t));
         }
 
-        ///<summary>
-        /// Returns the difference of this vector and the specified vector.
-        ///</summary>
-        /// <b>Note:</b> this vector is not modified.
-        ///
-        /// @param x x coordinate of the vector to subtract
-        /// @param y y coordinate of the vector to subtract
-        /// @param z z coordinate of the vector to subtract
-        ///
-        ///
-        /// @return the difference of this vector and the specified vector
-        public static IVector3d minus(this IVector3d vector, double x, double y, double z)
-        {
-            return Vector3d.xyz(vector.x() - x, vector.y() - y, vector.z() - z);
-        }
-
-        ///<summary>
-        /// Returns the product of this vector and the specified vector.
-        ///</summary>
-        ///
-        /// @param x x coordinate of the vector to multiply
-        /// @param y y coordinate of the vector to multiply
-        /// @param z z coordinate of the vector to multiply
-        ///
-        /// <b>Note:</b> this vector is not modified.
-        ///
-        /// @return the product of this vector and the specified vector
-        public static IVector3d times(this IVector3d vector, double x, double y, double z)
-        {
-            return Vector3d.xyz(vector.x() * x, vector.y() * y, vector.z() * z);
-        }
-
-        ///<summary>
+        /// <summary>
         /// Projects the specified vector onto this vector.
-        ///</summary>
+        /// </summary>
         ///
-        /// @param IVector3d vector to project onto this vector
-        /// @return the projection of the specified vector onto this vector
+        /// <param name="IVector3d">vector to project onto this vector</param>
+        /// <returns>the projection of the specified vector onto this vector</returns>
+        /// 
         public static IVector3d project(this IVector3d vector, IVector3d v)
         {
 
@@ -506,16 +473,16 @@ namespace CSharpVecMath
             return vector.times(pScale);
         }
 
-        ///<summary>
+        /// <summary>
         /// Indicates whether the two given points are collinear with this 
         /// vector/point. 
-        ///</summary>
+        /// </summary>
         /// 
-        /// @param p2 second point
-        /// @param p3 third point
-        /// 
-        /// @return {@code true} if all three points are collinear;
-        ///         {@code false} otherwise
+        /// <param name="p2">second point</param>
+        /// <param name="p3">third point</param>
+        /// <returns><c>true</c> if all three points are collinear;
+        ///         <c>false</c> otherwise</returns>
+        ///         
         public static bool collinear(this IVector3d vector, IVector3d p2, IVector3d p3)
         {
 
@@ -583,6 +550,89 @@ namespace CSharpVecMath
             return Math.Abs(largest - (second + third)) < Plane.TOL;
 
         }
+
+        /// <summary>
+        /// Returns a transformed copy of this vector.
+        /// </summary>
+        /// <remarks>
+        /// This vector is <b>not modified.</b>
+        /// </remarks>
+        ///
+        /// <param name="transform">the transform to apply</param>
+        /// <returns>a transformed copy of this vector</returns>
+        /// 
+        public static IModifiableVector3d transformed(this IVector3d vector, Transform transform)
+        {
+            return transform.transform(vector.asModifiable());
+        }
+
+        /// <summary>
+        /// Returns a transformed copy of this vector.
+        /// </summary>
+        /// <remarks>
+        /// This vector is <b>not modified.</b>
+        /// </remarks>
+        /// 
+        /// <param name="transform">the transform to apply</param>
+        /// <param name="amount"></param>
+        /// <returns>a transformed copy of this vector</returns>
+        /// 
+        public static IModifiableVector3d transformed(this IVector3d vector, Transform transform, double amount)
+        {
+            return transform.transform(vector.asModifiable(), amount);
+        }
+
+        /// <summary>
+        /// Returns this vector in STL string format.
+        /// </summary>
+        ///
+        /// <returns>this vector in STL string format</returns>
+        /// 
+        public static string toStlString(this IVector3d vector)
+        {
+            return vector.toStlString(new StringBuilder()).ToString();
+        }
+
+        /// <summary>
+        /// Returns this vector in STL string format.
+        /// </summary>
+        ///
+        /// <param name="sb">string builder</param>
+        /// <returns>the specified string builder</returns>
+        /// 
+        public static StringBuilder toStlString(this IVector3d vector, StringBuilder sb)
+        {
+            return sb.Append(vector.x().ToString(frmt)).Append(" ").
+                    Append(vector.y().ToString(frmt)).Append(" ").
+                    Append(vector.z().ToString(frmt));
+        }
+
+        /// <summary>
+        /// Returns this vector in OBJ string format.
+        /// </summary>
+        ///
+        /// <returns>this vector in OBJ string format</returns>
+        /// 
+        public static string toObjString(this IVector3d vector)
+        {
+            return vector.toObjString(new StringBuilder()).ToString();
+        }
+
+        /// <summary>
+        /// Returns this vector in OBJ string format.
+        /// </summary>
+        ///
+        /// <param name="sb">string builder</param>
+        /// <returns>the specified string builder</returns>
+        /// 
+        public static StringBuilder toObjString(this IVector3d vector, StringBuilder sb)
+        {
+            return sb.Append(vector.x().ToString(frmt)).Append(" ").
+                    Append(vector.y().ToString(frmt)).Append(" ").
+                    Append(vector.z().ToString(frmt));
+        }
+
+        private static readonly IFormatProvider frmt = CultureInfo.CreateSpecificCulture("en-US");
 
     }
 }

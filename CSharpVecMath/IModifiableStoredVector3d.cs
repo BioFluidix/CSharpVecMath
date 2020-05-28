@@ -42,10 +42,11 @@ namespace CSharpVecMath
         /// Creates a new stored vector from the specified double array.
         /// </summary>
         /// 
-        /// @param storage double array used to store the vector
-        /// @param offset the storage offset used by the vector
-        /// @param stride the stride used to store the vector elements (x,y,z)
-        /// @return a new stored vector from the specified double array
+        /// <param name="storage">double array used to store the vector</param>
+        /// <param name="offset">the storage offset used by the vector</param>
+        /// <param name="stride">the stride used to store the vector elements (x,y,z)</param>
+        /// 
+        /// <returns>a new stored vector from the specified double array</returns>
         public static IModifiableStoredVector3d from(double[] storage, int offset, int stride)
         {
             StoredVector3dImpl result = new StoredVector3dImpl();
@@ -58,9 +59,10 @@ namespace CSharpVecMath
         /// <summary>
         /// Creates a new modifiable stored vector from the specified double array.
         /// </summary>
-        /// @param storage double array used to store the vector
-        /// @param offset the storage offset used by the vector
-        /// @return a new stored vector from the specified double array
+        /// <param name="storage">double array used to store the vector</param>
+        /// <param name="offset">the storage offset used by the vector</param>
+        /// 
+        /// <returns>a new stored vector from the specified double array</returns>
         /// 
         public static IModifiableStoredVector3d from(double[] storage, int offset)
         {
@@ -71,9 +73,9 @@ namespace CSharpVecMath
         /// Creates a new modifiable stored vector from the specified double array.
         /// </summary>
         /// 
-        /// @param storage double array used to store the vector
-        /// @param v the vector who's storage offset and stride shall be used
-        /// @return a new stored vector from the specified double array
+        /// <param name="storage">double array used to store the vector</param>
+        /// <param name="v">the vector who's storage offset and stride shall be used</param>
+        /// <returns>a new stored vector from the specified double array</returns>
         public static IModifiableStoredVector3d from(double[] storage, IStoredVector3d v)
         {
             return from(storage, v.getOffset(), v.getStride());
@@ -85,7 +87,7 @@ namespace CSharpVecMath
     /// A modifiable 3d vector that is stored in an external double array.
     /// </summary>
     /// 
-    /// @author Michael Hoffer <info@michaelhoffer.de>
+    /// author: Michael Hoffer <info@michaelhoffer.de>
     public interface IModifiableStoredVector3d
         : IStoredVector3d, IModifiableVector3d {}
 }

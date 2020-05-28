@@ -39,23 +39,23 @@ namespace CSharpVecMath
 {
     /// <summary>
     /// Transform. Transformations (translation, rotation, scale) can be applied to
-    /// geometrical objects like {@link CSG}, {@link Polygon}, {@link Vertex} and
-    /// {@link Vector3d}.
+    /// geometrical objects like <see cref="CSharpCSG.CSG"/>, <see cref="CSharpCSG.Polygon"/>
+    /// <see cref="CSharpCSG.Vertex"/> and <see cref="Vector3d"/>.
     ///
     /// This transform class uses the builder pattern to define combined
-    /// transformations.<br><br>
+    /// transformations.
     /// </summary>
-    ///
-    /// <b>Example:</b>
-    ///
-    /// <blockquote><pre>
+    /// <example>
+    /// <code>
     /// // t applies rotation and translation
     /// Transform t = Transform.unity().rotX(45).translate(2,1,0);
-    /// </pre></blockquote>
+    /// </code>
+    /// </example>
     ///
     /// <b>TODO:</b> use quaternions for rotations.
     ///
-    /// @author Michael Hoffer &lt;info@michaelhoffer.de&gt;
+    /// author: Michael Hoffer &lt;info@michaelhoffer.de&gt;
+    /// 
     public class Transform
     {
 
@@ -81,8 +81,9 @@ namespace CSharpVecMath
         /// Returns a new transform based on the specified matrix values (4x4).
         /// </summary>
         ///
-        /// @param values 16 double values that represent the transformation matrix
-        /// @return a new transform
+        /// <param name="values">16 double values that represent the transformation matrix</param>
+        /// <returns>a new transform</returns>
+        /// 
         public static Transform from(params double[] values)
         {
             Matrix4d m = new Matrix4d(values);
@@ -93,8 +94,9 @@ namespace CSharpVecMath
         /// Returns this transform as matrix (4x4).
         /// </summary>
         ///
-        /// @param values target array (16 values)
-        /// @return a new transform
+        /// <param name="values">target array (16 values)</param>
+        /// <returns>a new transform</returns>
+        /// 
         public double[] to(double[] values)
         {
             return m.get(values);
@@ -104,7 +106,8 @@ namespace CSharpVecMath
         /// Returns this transform as matrix (4x4).
         /// </summary>
         ///
-        /// @return a new transform
+        /// <returns>a new transform</returns>
+        /// 
         public double[] to()
         {
             return m.get(null);
@@ -114,7 +117,8 @@ namespace CSharpVecMath
         /// Returns a new unity transform.
         /// </summary>
         ///
-        /// @return unity transform
+        /// <returns>unity transform</returns>
+        /// 
         public static Transform unity()
         {
             return new Transform();
@@ -124,18 +128,20 @@ namespace CSharpVecMath
         /// Constructor.
         /// </summary>
         ///
-        /// @param m matrix
+        /// <param name="m">matrix</param>
+        /// 
         private Transform(Matrix4d m)
         {
             this.m = m;
         }
 
         /// <summary>
-        /// Applies rotation operation around the x axis to this transform.
+        /// Applies rotation operation around the <c>x</c> axis to this transform.
         /// </summary>
         ///
-        /// @param degrees degrees
-        /// @return this transform
+        /// <param name="degrees">degrees</param>
+        /// <returns>this transform</returns>
+        /// 
         public Transform rotX(double degrees)
         {
             double radians = degrees * Math.PI * (1.0 / 180.0);
@@ -153,39 +159,47 @@ namespace CSharpVecMath
         }
 
         /// <summary>
-        /// Applies rotation operation around the y axis to this transform.
+        /// Applies rotation operation around the <c>y</c> axis to this transform.
         /// </summary>
         ///
-        /// @param degrees degrees
-        ///
-        /// @return this transform
+        /// <param name="degrees">degrees</param>
+        /// <returns>this transform</returns>
+        /// 
         public Transform rotY(double degrees)
         {
             double radians = degrees * Math.PI * (1.0 / 180.0);
             double cos = Math.Cos(radians);
             double sin = Math.Sin(radians);
-            double[] elements = new double [] {
-            cos, 0, -sin, 0, 0, 1, 0, 0, sin, 0, cos, 0, 0, 0, 0, 1
-        };
+            double[] elements = new double []
+            {
+                cos, 0, -sin, 0,
+                0, 1, 0, 0,
+                sin, 0, cos, 0,
+                0, 0, 0, 1
+            };
             m.mul(new Matrix4d(elements));
             return this;
         }
 
         /// <summary>
-        /// Applies rotation operation around the z axis to this transform.
+        /// Applies rotation operation around the <c>z</c> axis to this transform.
         /// </summary>
         ///
-        /// @param degrees degrees
-        ///
-        /// @return this transform
+        /// <param name="degrees">degrees</param>
+        /// <returns>this transform</returns>
+        /// 
         public Transform rotZ(double degrees)
         {
             double radians = degrees * Math.PI * (1.0 / 180.0);
             double cos = Math.Cos(radians);
             double sin = Math.Sin(radians);
-            double[] elements = new double [] {
-            cos, sin, 0, 0, -sin, cos, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1
-        };
+            double[] elements = new double []
+            {
+                cos, sin, 0, 0,
+                -sin, cos, 0, 0,
+                0, 0, 1, 0,
+                0, 0, 0, 1
+            };
             m.mul(new Matrix4d(elements));
             return this;
         }
@@ -194,11 +208,11 @@ namespace CSharpVecMath
         /// Applies a rotation operation to this transform.
         /// </summary>
         ///
-        /// @param x x axis rotation (degrees)
-        /// @param y y axis rotation (degrees)
-        /// @param z z axis rotation (degrees)
-        ///
-        /// @return this transform
+        /// <param name="x">x axis rotation (degrees)</param>
+        /// <param name="y">y axis rotation (degrees)</param>
+        /// <param name="z">z axis rotation (degrees)</param>
+        /// <returns>this transform</returns>
+        /// 
         public Transform rot(double x, double y, double z)
         {
             return rotX(x).rotY(y).rotZ(z);
@@ -208,9 +222,9 @@ namespace CSharpVecMath
         /// Applies a rotation operation to this transform.
         /// </summary>
         ///
-        /// @param vec axis rotation for x, y, z (degrees)
-        ///
-        /// @return this transform
+        /// <param name="vec">axis rotation for x, y, z (degrees)</param>
+        /// <returns>this transform</returns>
+        /// 
         public Transform rot(IVector3d vec)
         {
 
@@ -222,9 +236,10 @@ namespace CSharpVecMath
         /// Applies a transformation that rotates one vector into another.
         /// </summary>
         ///
-        /// @param from source vector
-        /// @param to target vector
-        /// @return this transformation
+        /// <param name="from">source vector</param>
+        /// <param name="to">target vector</param>
+        /// <returns>this transformation</returns>
+        /// 
         public Transform rot(IVector3d from, IVector3d to)
         {
             IVector3d a = from.normalized();
@@ -250,10 +265,11 @@ namespace CSharpVecMath
         /// Applies a rotation operation about the specified rotation axis.
         /// </summary>
         ///
-        /// @param axisPos axis point
-        /// @param axisDir axis direction (may be unnormalized)
-        /// @param degrees rotantion angle in degrees
-        /// @return this transform
+        /// <param name="axisPos">axis point</param>
+        /// <param name="axisDir">axis direction (may be unnormalized)</param>
+        /// <param name="degrees">rotantion angle in degrees</param>
+        /// <returns>this transform</returns>
+        /// 
         public Transform rot(IVector3d axisPos, IVector3d axisDir, double degrees)
         {
             Transform tmp = Transform.unity();
@@ -310,9 +326,9 @@ namespace CSharpVecMath
         /// Applies a translation operation to this transform.
         /// </summary>
         ///
-        /// @param vec translation vector (x,y,z)
-        ///
-        /// @return this transform
+        /// <param name="vec">translation vector (x,y,z)</param>
+        /// <returns>this transform</returns>
+        /// 
         public Transform translate(IVector3d vec)
         {
             return translate(vec.x(), vec.y(), vec.z());
@@ -322,11 +338,11 @@ namespace CSharpVecMath
         /// Applies a translation operation to this transform.
         /// </summary>
         ///
-        /// @param x translation (x axis)
-        /// @param y translation (y axis)
-        /// @param z translation (z axis)
-        ///
-        /// @return this transform
+        /// <param name="x">translation (x axis)</param>
+        /// <param name="y">translation (y axis)</param>
+        /// <param name="z">translation (z axis)</param>
+        /// <returns>this transform</returns>
+        /// 
         public Transform translate(double x, double y, double z)
         {
             double[] elements = new double []
@@ -344,9 +360,9 @@ namespace CSharpVecMath
         /// Applies a translation operation to this transform.
         /// </summary>
         ///
-        /// @param value translation (x axis)
-        ///
-        /// @return this transform
+        /// <param name="value">translation (x axis)</param>
+        /// <returns>this transform</returns>
+        /// 
         public Transform translateX(double value)
         {
             double[] elements = new double []
@@ -364,9 +380,9 @@ namespace CSharpVecMath
         /// Applies a translation operation to this transform.
         /// </summary>
         ///
-        /// @param value translation (y axis)
-        ///
-        /// @return this transform
+        /// <param name="value">translation (y axis)</param>
+        /// <returns>this transform</returns>
+        /// 
         public Transform translateY(double value)
         {
             double[] elements = new double []
@@ -384,9 +400,9 @@ namespace CSharpVecMath
         /// Applies a translation operation to this transform.
         /// </summary>
         ///
-        /// @param value translation (z axis)
-        ///
-        /// @return this transform
+        /// <param name="value">translation (z axis)</param>
+        /// <returns>this transform</returns>
+        /// 
         public Transform translateZ(double value)
         {
             double[] elements = new double []
@@ -404,9 +420,9 @@ namespace CSharpVecMath
         /// Applies a mirror operation to this transform.
         /// </summary>
         ///
-        /// @param plane the plane that defines the mirror operation
-        ///
-        /// @return this transform
+        /// <param name="plane">the plane that defines the mirror operation</param>
+        /// <returns>this transform</returns>
+        /// 
         public Transform mirror(Plane plane)
         {
 
@@ -431,9 +447,9 @@ namespace CSharpVecMath
         /// Applies a scale operation to this transform.
         /// </summary>
         ///
-        /// @param vec vector that specifies scale (x,y,z)
-        ///
-        /// @return this transform
+        /// <param name="vec">vector that specifies scale (x,y,z)</param>
+        /// <returns>this transform</returns>
+        /// 
         public Transform scale(IVector3d vec)
         {
 
@@ -457,11 +473,11 @@ namespace CSharpVecMath
         /// Applies a scale operation to this transform.
         /// </summary>
         ///
-        /// @param x x scale value
-        /// @param y y scale value
-        /// @param z z scale value
-        ///
-        /// @return this transform
+        /// <param name="x">x scale value</param>
+        /// <param name="y">y scale value</param>
+        /// <param name="z">z scale value</param>
+        /// <returns>this transform</returns>
+        /// 
         public Transform scale(double x, double y, double z)
         {
 
@@ -485,9 +501,9 @@ namespace CSharpVecMath
         /// Applies a scale operation to this transform.
         /// </summary>
         ///
-        /// @param s s scale value (x, y and z)
-        ///
-        /// @return this transform
+        /// <param name="s">s scale value (x, y and z)</param>
+        /// <returns>this transform</returns>
+        /// 
         public Transform scale(double s)
         {
 
@@ -511,9 +527,9 @@ namespace CSharpVecMath
         /// Applies a scale operation (x axis) to this transform.
         /// </summary>
         ///
-        /// @param s x scale value
-        ///
-        /// @return this transform
+        /// <param name="s">x scale value</param>
+        /// <returns>this transform</returns>
+        /// 
         public Transform scaleX(double s)
         {
 
@@ -537,9 +553,9 @@ namespace CSharpVecMath
         /// Applies a scale operation (y axis) to this transform.
         /// </summary>
         ///
-        /// @param s y scale value
-        ///
-        /// @return this transform
+        /// <param name="s">y scale value</param>
+        /// <returns>this transform</returns>
+        /// 
         public Transform scaleY(double s)
         {
 
@@ -563,9 +579,9 @@ namespace CSharpVecMath
         /// Applies a scale operation (z axis) to this transform.
         /// </summary>
         ///
-        /// @param s z scale value
-        ///
-        /// @return this transform
+        /// <param name="s">z scale value</param>
+        /// <returns>this transform</returns>
+        /// 
         public Transform scaleZ(double s)
         {
 
@@ -589,9 +605,9 @@ namespace CSharpVecMath
         /// Applies this transform to the specified vector.
         /// </summary>
         ///
-        /// @param vec vector to transform
-        ///
-        /// @return the specified vector
+        /// <param name="vec">vector to transform</param>
+        /// <returns>the specified vector</returns>
+        /// 
         public IModifiableVector3d transform(IModifiableVector3d vec)
         {
             double x, y;
@@ -608,9 +624,9 @@ namespace CSharpVecMath
         /// Applies this transform to the specified vector.
         /// </summary>
         ///
-        /// @param vec vector to transform
-        ///
-        /// @return the specified vector
+        /// <param name="vec">vector to transform</param>
+        /// <returns>the specified vector</returns>
+        /// 
         public IVector3d transform(IVector3d vec)
         {
             IModifiableVector3d result = vec.asModifiable();
@@ -628,10 +644,10 @@ namespace CSharpVecMath
         /// Applies this transform to the specified vector.
         /// </summary>
         ///
-        /// @param vec vector to transform
-        /// @param amount transform amount (0 = 0 %, 1 = 100%)
-        ///
-        /// @return the specified vector
+        /// <param name="vec">vector to transform</param>
+        /// <param name="amount">transform amount (0 = 0 %, 1 = 100%)</param>
+        /// <returns>the specified vector</returns>
+        /// 
         public IModifiableVector3d transform(IModifiableVector3d vec, double amount)
         {
 
@@ -665,7 +681,7 @@ namespace CSharpVecMath
         //     ///
         //     /// <b>Note:</b> this transformation is not modified.
         //     ///
-        //     /// @return the scale factor of this transformation
+        //     /// <returns>the scale factor of this transformation</returns>
         //     /// </summary>
         //    public double getScale() {
         //        return m.getScale();
@@ -676,8 +692,9 @@ namespace CSharpVecMath
         /// the orientation.
         /// </summary>
         ///
-        /// @return <code>true</code> if this transform performs a mirror operation;
-        /// <code>false</code> otherwise
+        /// <returns><c>true</c> if this transform performs a mirror operation;
+        /// <c>false</c> otherwise.</returns>
+        /// 
         public bool isMirror()
         {
             return m.determinant() < 0;
@@ -687,9 +704,9 @@ namespace CSharpVecMath
         /// Applies the specified transform to this transform.
         /// </summary>
         ///
-        /// @param t transform to apply
-        ///
-        /// @return this transform
+        /// <param name="t">transform to apply</param>
+        /// <returns>this transform</returns>
+        /// 
         public Transform apply(Transform t)
         {
             m.mul(t.m);

@@ -35,60 +35,63 @@
 
 namespace CSharpVecMath
 {
-    ///<summary>
+    /// <summary>
     /// Represents a plane in 3D space.
-    ///</summary>
+    /// </summary>
     ///
-    /// @author Michael Hoffer &lt;info@michaelhoffer.de&gt;
+    /// author: Michael Hoffer &lt;info@michaelhoffer.de&gt;
+    /// 
     public class Plane
     {
 
         public const double TOL = 1e-12;
 
-        ///<summary>
+        /// <summary>
         /// XY plane.
-        ///</summary>
+        /// </summary>
         public static readonly Plane XY_PLANE = new Plane(Vector3d.ZERO, Vector3d.Z_ONE);
-        ///<summary>
+        /// <summary>
         /// XZ plane.
-        ///</summary>
+        /// </summary>
         public static readonly Plane XZ_PLANE = new Plane(Vector3d.ZERO, Vector3d.Y_ONE);
-        ///<summary>
+        /// <summary>
         /// YZ plane.
-        ///</summary>
+        /// </summary>
         public static readonly Plane YZ_PLANE = new Plane(Vector3d.ZERO, Vector3d.X_ONE);
 
-        ///<summary>
+        /// <summary>
         /// Normal vector.
-        ///</summary>
+        /// </summary>
         private readonly IVector3d normal;
-        ///<summary>
+        /// <summary>
         /// Distance to origin.
-        ///</summary>
+        /// </summary>
         private readonly IVector3d anchor;
 
-        ///<summary>
+        /// <summary>
         /// Constructor. Creates a new plane defined by its normal vector and an
-        /// anchor point
-        ///</summary>
+        /// anchor point.
+        /// </summary>
         ///
-        /// @param normal plane normal
-        /// @param dist distance to origin
+        /// <param name="normal">plane normal</param>
+        /// <param name="dist">distance to origin</param>
+        /// 
         private Plane(IVector3d anchor, IVector3d normal)
         {
             this.normal = normal.normalized();
             this.anchor = anchor;
         }
 
-        ///<summary>
+        /// <summary>
         /// Creates a plane defined by the the specified points. The anchor point of
         /// the plane is the centroid of the triangle (a,b,c).
-        ///</summary>
+        /// </summary>
         ///
-        /// @param a first point
-        /// @param b second point
-        /// @param c third point
-        /// @return a plane
+        /// <param name="a">first point</param>
+        /// <param name="b">second point</param>
+        /// <param name="c">third point</param>
+        /// <returns>a plane</returns>
+        /// 
         public static Plane fromPoints(IVector3d a, IVector3d b, IVector3d c)
         {
             IVector3d normal = b.minus(a).crossed(c.minus(a)).normalized();
@@ -104,13 +107,14 @@ namespace CSharpVecMath
             return new Plane(anchor, normal);
         }
 
-        ///<summary>
+        /// <summary>
         /// Creates a plane defined by an anchor point and a normal vector.
-        ///</summary>
+        /// </summary>
         ///
-        /// @param p anchor point
-        /// @param n plane normal
-        /// @return a plane
+        /// <param name="p">anchor point</param>
+        /// <param name="n">plane normal</param>
+        /// <returns>a plane</returns>
+        /// 
         public static Plane fromPointAndNormal(IVector3d p, IVector3d n)
         {
             return new Plane(p, n);
@@ -121,50 +125,57 @@ namespace CSharpVecMath
             return new Plane(anchor, normal);
         }
 
-        ///<summary>
-        /// Returns a flipped copy of this plane.
-        ///</summary>
-        /// @return flipped coppy of this plane
+        /// <summary>
+        /// Creates a flipped copy of this plane.
+        /// </summary>
+        /// 
+        /// <returns>Flipped copy of this plane.</returns>
+        /// 
         public Plane flipped()
         {
             return new Plane(anchor, normal.negated());
         }
 
-        ///<summary>
-        /// Return the distance of this plane to the origin.
-        ///</summary>
+        /// <summary>
+        /// Calculates the distance of this plane to the origin.
+        /// </summary>
         ///
-        /// @return distance of this plane to the origin
+        /// <returns>Distance of this plane to the origin.</returns>
+        /// 
         public double getDist()
         {
             return anchor.magnitude();
         }
 
-        ///<summary>
+        /// <summary>
         /// Return the anchor point of this plane.
-        ///</summary>
+        /// </summary>
         ///
-        /// @return anchor point of this plane
+        /// <returns>Anchor point of this plane</returns>
+        /// 
         public IVector3d getAnchor()
         {
             return anchor;
         }
 
-        ///<summary>
+        /// <summary>
         /// Returns the normal of this plane.
-        ///</summary>
-        /// @return the normal of this plane
+        /// </summary>
+        /// 
+        /// <returns>The normal of this plane.</returns>
+        /// 
         public IVector3d getNormal()
         {
             return normal;
         }
 
-        ///<summary>
+        /// <summary>
         /// Projects the specified point onto this plane.
-        ///</summary>
+        /// </summary>
         ///
-        /// @param p point to project
-        /// @return projection of p onto this plane
+        /// <param name="p">point to project</param>
+        /// <returns>Projection of <c>p</c> onto this plane</returns>
+        /// 
         public IVector3d project(IVector3d p)
         {
 
@@ -181,27 +192,29 @@ namespace CSharpVecMath
             return projP;
         }
 
-        ///<summary>
-        /// Returns the shortest distance between the specified point and this plane.
-        ///</summary>
+        /// <summary>
+        /// Calculates the shortest distance between the specified point and this plane.
+        /// </summary>
         ///
-        /// @param p point
-        /// @return the shortest distance between the specified point and this plane
+        /// <param name="p">point</param>
+        /// <returns>The shortest distance between the specified point and this plane.</returns>
+        /// 
         public double distance(IVector3d p)
         {
             return p.minus(project(p)).magnitude();
         }
 
-        ///<summary>
+        /// <summary>
         /// Determines whether the specified point is in front of, in back of or on
         /// this plane.
-        ///</summary>
+        /// </summary>
         ///
-        /// @param p point to check
-        /// @param TOL tolerance
-        /// @return {@code 1}, if p is in front of the plane, {@code -1}, if the
-        /// point is in the back of this plane and {@code 0} if the point is on this
-        /// plane
+        /// <param name="p">point to check</param>
+        /// <param name="TOL">tolerance</param>
+        /// <returns><c>1</c>, if p is in front of the plane, <c>-1</c>, if the
+        /// point is in the back of this plane and <c>0</c> if the point is on this
+        /// plane.</returns>
+        /// 
         public int compare(IVector3d p, double TOL)
         {
 
@@ -210,16 +223,16 @@ namespace CSharpVecMath
             return (t < -TOL) ? -1 : (t > TOL) ? 1 : 0;
         }
 
-        ///<summary>
+        /// <summary>
         /// Determines whether the specified point is in front of, in back of or on
         /// this plane.
-        ///</summary>
+        /// </summary>
         ///
-        /// @param p point to check
+        /// <param name="p">point to check</param>
+        /// <returns><c>1</c>, if p is in front of the plane, <c>-1</c>, if the
+        /// point is in the back of this plane and <c>0</c> if the point is on this
+        /// plane.</returns>
         /// 
-        /// @return {@code 1}, if p is in front of the plane, {@code -1}, if the
-        /// point is in the back of this plane and {@code 0} if the point is on this
-        /// plane
         public int compare(IVector3d p)
         {
 

@@ -37,10 +37,12 @@ using System;
 
 namespace CSharpVecMath
 {
-    ///<summary>
+    /// <summary>
     /// Internal utility class.
     /// </summary>
-    /// @author Michael Hoffer <info@michaelhoffer.de>
+    /// 
+    /// author: Michael Hoffer <info@michaelhoffer.de>
+    /// 
     public class VectorUtilInternal
     {
 

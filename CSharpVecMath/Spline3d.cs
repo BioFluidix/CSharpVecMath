@@ -41,7 +41,8 @@ namespace CSharpVecMath
     /// <summary>
     /// 3d Spline.
     /// </summary>
-    /// @author Michael Hoffer (info@michaelhoffer.de)
+    /// 
+    /// author: Michael Hoffer (info@michaelhoffer.de)
     /// 
     public sealed class Spline3d : Spline
     {
@@ -67,8 +68,10 @@ namespace CSharpVecMath
 
         /// <summary>
         /// Adds a control point to this spline.
-        /// @param point point to add
         /// </summary>
+        /// 
+        /// <param name="point">point to add</param>
+        /// 
         public void addPoint(IVector3d point)
         {
             this.points.Add(point);
@@ -76,8 +79,10 @@ namespace CSharpVecMath
 
         /// <summary>
         /// Returns all control points.
-        /// @return control points
         /// </summary>
+        /// 
+        /// <returns>control points</returns>
+        /// 
         public List<IVector3d> getPoints()
         {
             return points;
@@ -97,9 +102,8 @@ namespace CSharpVecMath
         /// Returns a point on the spline curve.
         /// </summary>
         /// 
-        /// @param position position on the curve, range {@code [0, 1)}
-        /// 
-        /// @return a point on the spline curve
+        /// <param name="position">position on the curve, range <c>[0, 1)</c></param>
+        /// <returns>a point on the spline curve</returns>
         /// 
         public IVector3d getPoint(double position)
         {

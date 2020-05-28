@@ -41,7 +41,8 @@ namespace CSharpVecMath
         /// <summary>
         /// Returns the struct size of this vector (3).
         /// </summary>
-        /// @return the struct size of this vector (3)
+        /// 
+        /// <returns>the struct size of this vector (3)</returns>
         /// 
         public static int getStructSize()
         {
@@ -51,10 +52,11 @@ namespace CSharpVecMath
         /// <summary>
         /// Creates a new stored vector from the specified double array.
         /// </summary>
-        /// @param storage double array used to store the vector
-        /// @param offset the storage offset used by the vector
-        /// @param stride the stride used to store the vector elements (x,y,z)
-        /// @return a new stored vector from the specified double array
+        /// 
+        /// <param name="storage">double array used to store the vector</param>
+        /// <param name="offset">the storage offset used by the vector</param>
+        /// <param name="stride">the stride used to store the vector elements (x,y,z)</param>
+        /// <returns>a new stored vector from the specified double array</returns>
         /// 
         public static IStoredVector3d from(double[] storage, int offset, int stride)
         {
@@ -68,9 +70,10 @@ namespace CSharpVecMath
         /// <summary>
         /// Creates a new stored vector from the specified double array.
         /// </summary>
-        /// @param storage double array used to store the vector
-        /// @param offset the storage offset used by the vector
-        /// @return a new stored vector from the specified double array
+        /// 
+        /// <param name="storage">double array used to store the vector</param>
+        /// <param name="offset">the storage offset used by the vector</param>
+        /// <returns>a new stored vector from the specified double array</returns>
         /// 
         public static IStoredVector3d from(double[] storage, int offset)
         {
@@ -86,7 +89,8 @@ namespace CSharpVecMath
     /// comes with large object arrays. Another use case is shared memory with native
     /// code.
     /// </summary>
-    /// @author Michael Hoffer <info@michaelhoffer.de>
+    /// 
+    /// author: Michael Hoffer <info@michaelhoffer.de>
     /// 
     public interface IStoredVector3d : IVector3d
     {
@@ -94,35 +98,41 @@ namespace CSharpVecMath
         /// <summary>
         /// Sets the array that is used to store this vector.
         /// </summary>
-        /// @param storage storage array to set
+        /// 
+        /// <param name="storage">storage array to set</param>
         /// 
         void setStorage(double[] storage);
 
         /// <summary>
         /// Sets the storage offset used by this vector.
         /// </summary>
-        /// @param offset offset to set
+        /// 
+        /// <param name="offset">offset to set</param>
         /// 
         void setOffset(int offset);
 
         /// <summary>
         /// Returns the storage offset used by this vector.
         /// </summary>
-        /// @return the storage offset used by this vector
+        /// 
+        /// <returns>the storage offset used by this vector</returns>
         /// 
         int getOffset();
 
         /// <summary>
         /// Sets the stride used to store the vector elements (x,y,z).
         /// </summary>
-        /// @param stride the stride to set
+        /// 
+        /// <param name="stride">the stride to set</param>
         /// 
         void setStride(int stride);
 
         /// <summary>
         /// Returns the stride used to store the vector elements (x,y,z).
         /// </summary>
-        /// @return the stride used to store the vector elements (x,y,z)
+        /// 
+        /// <returns>the stride used to store the vector elements (x,y,z)</returns>
+        /// 
         int getStride();
 
 

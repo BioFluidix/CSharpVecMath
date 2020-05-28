@@ -36,8 +36,11 @@
 namespace CSharpVecMath
 {
      /// <summary>
-     /// @author Michael Hoffer (info@michaelhoffer.de)
+     /// A 4x4 matrix.
      /// </summary>
+     /// 
+     /// author: Michael Hoffer (info@michaelhoffer.de)
+     /// 
     public class Matrix4d
     {
 
@@ -62,6 +65,10 @@ namespace CSharpVecMath
         {
         }
 
+        /// <summary>
+        /// Constructor. Copies array elements into matrix elements.
+        /// </summary>
+        /// <param name="v"></param>
         public Matrix4d(double[] v)
         {
 
@@ -149,8 +156,10 @@ namespace CSharpVecMath
 
         /// <summary>
         /// Multiplies this matrix with the specified matrix.
-        ///</summary>
-        /// @param m matrix to multiply
+        /// </summary>
+        /// 
+        /// <param name="m">matrix to multiply</param>
+        /// 
         public void mul(Matrix4d m)
         {
 
@@ -268,6 +277,10 @@ namespace CSharpVecMath
         //
         //    }
 
+        /// <summary>
+        /// Calculates the determinant of the matrix.
+        /// </summary>
+        /// <returns>The determinant of the matrix.</returns>
         public double determinant()
         {
 

@@ -37,141 +37,151 @@ namespace CSharpVecMath
 {
     public abstract class Vector3d
     {
-        ///<summary>
-        /// Unity vector {@code (1, 1, 1)}.
-        ///</summary>
+        /// <summary>
+        /// Unity vector <c>(1, 1, 1)</c>.
+        /// </summary>
         public static readonly IVector3d UNITY = new Vector3dImpl(1, 1, 1);
 
-        ///<summary>
-        /// Vector {@code (1, 0, 0)}.
-        ///</summary>
+        /// <summary>
+        /// Vector <c>(1, 0, 0)</c>.
+        /// </summary>
         public static readonly IVector3d X_ONE = new Vector3dImpl(1, 0, 0);
 
-        ///<summary>
-        /// Vector {@code (0, 1, 0)}.
-        ///</summary>
+        /// <summary>
+        /// Vector <c>(0, 1, 0)</c>.
+        /// </summary>
         public static readonly IVector3d Y_ONE = new Vector3dImpl(0, 1, 0);
 
-        ///<summary>
-        /// Vector {@code (0, 0, 0)}.
-        ///</summary>
+        /// <summary>
+        /// Vector <c>(0, 0, 0)</c>.
+        /// </summary>
         public static readonly IVector3d ZERO = new Vector3dImpl(0, 0, 0);
 
-        ///<summary>
-        /// Vector {@code (0, 0, 1)}.
-        ///</summary>
+        /// <summary>
+        /// Vector <c>(0, 0, 1)</c>.
+        /// </summary>
         public static readonly IVector3d Z_ONE = new Vector3dImpl(0, 0, 1);
 
 
-        ///<summary>
-        /// Creates a new vector with specified {@code x}
-        ///</summary>
+        /// <summary>
+        /// Creates a new vector with specified <c>x</c>
+        /// </summary>
         ///
-        /// @param x x value
-        /// @return a new vector {@code [x,0,0]}
+        /// <param name="x">x value</param>
+        /// <returns>a new vector <c>[x,0,0]</c></returns>
+        /// 
         public static IVector3d x(double x)
         {
             return new Vector3dImpl(x, 0, 0);
         }
 
-        ///<summary>
-        /// Creates a new vector with specified {@code y}
-        ///</summary>
+        /// <summary>
+        /// Creates a new vector with specified <c>y</c>
+        /// </summary>
         ///
-        /// @param y y value
-        /// @return a new vector {@code [0,y,0]}
+        /// <param name="y">y value</param>
+        /// <returns>a new vector <c>[0,y,0]</c></returns>
+        /// 
         public static IVector3d y(double y)
         {
             return new Vector3dImpl(0, y, 0);
         }
 
-        ///<summary>
-        /// Creates a new vector with specified {@code z}
-        ///</summary>
+        /// <summary>
+        /// Creates a new vector with specified <c>z</c>
+        /// </summary>
         ///
-        /// @param z z value
-        /// @return a new vector {@code [0,0,z]}
+        /// <param name="z">z value</param>
+        /// <returns>a new vector <c>[0,0,z]</c></returns>
+        /// 
         public static IVector3d z(double z)
         {
             return new Vector3dImpl(0, 0, z);
         }
 
-        ///<summary>
-        /// Creates a new vector with specified {@code x}, {@code y} and
-        /// {@code z = 0}.
-        ///</summary>
+        /// <summary>
+        /// Creates a new vector with specified <c>x</c>, <c>y</c> and
+        /// <c>z = 0</c>.
+        /// </summary>
         ///
-        /// @param x x value
-        /// @param y y value
-        /// @return
+        /// <param name="x">x value</param>
+        /// <param name="y">y value</param>
+        /// <returns>a new vector</returns>
+        /// 
         public static IVector3d xy(double x, double y)
         {
             return new Vector3dImpl(x, y);
         }
 
-        ///<summary>
-        /// Creates a new vector with specified {@code x}, {@code y} and {@code z}.
-        ///</summary>
+        /// <summary>
+        /// Creates a new vector with specified <c>x</c>, <c>y</c> and <c>z</c>.
+        /// </summary>
         ///
-        /// @param x x value
-        /// @param y y value
-        /// @param z z value
-        /// @return a new vector
+        /// <param name="x">x value</param>
+        /// <param name="y">y value</param>
+        /// <param name="z">z value</param>
+        /// <returns>a new vector</returns>
+        /// 
         public static IVector3d xyz(double x, double y, double z)
         {
             return new Vector3dImpl(x, y, z);
         }
 
-        ///<summary>
-        /// Creates a new vector with specified {@code y} and {@code z}.
-        ///</summary>
+        /// <summary>
+        /// Creates a new vector with specified <c>y</c> and <c>z</c>.
+        /// </summary>
         ///
-        /// @param y y value
-        /// @param z z value
-        /// @return a new vector
+        /// <param name="y">y value</param>
+        /// <param name="z">z value</param>
+        /// <returns>a new vector</returns>
+        /// 
         public static IVector3d yz(double y, double z)
         {
             return new Vector3dImpl(0, y, z);
         }
 
-        ///<summary>
-        /// Creates a new vector with specified {@code x} and {@code z}.
-        ///</summary>
+        /// <summary>
+        /// Creates a new vector with specified <c>x</c> and <c>z</c>.
+        /// </summary>
         ///
-        /// @param x x value
-        /// @param z z value
-        /// @return a new vector
+        /// <param name="x">x value</param>
+        /// <param name="z">z value</param>
+        /// <returns>a new vector</returns>
+        /// 
         public static IVector3d xz(double x, double z)
         {
             return new Vector3dImpl(x, 0, z);
         }
 
-        ///<summary>
-        /// Creates a new vector {@code (0,0,0)}.
-        ///</summary>
+        /// <summary>
+        /// Creates a new vector <c>(0,0,0)</c>.
+        /// </summary>
         ///
-        /// @return a new vector
+        /// <returns>a new vector</returns>
+        /// 
         public static IVector3d zero()
         {
             return new Vector3dImpl(0, 0, 0);
         }
 
-        ///<summary>
-        /// Creates a new vector {@code (1,1,1)}.
-        ///</summary>
+        /// <summary>
+        /// Creates a new vector <c>(1,1,1)</c>.
+        /// </summary>
         ///
-        /// @return a new vector
+        /// <returns>a new vector</returns>
+        /// 
         public static IVector3d unity()
         {
             return new Vector3dImpl(0, 0, 0);
         }
 
-        ///<summary>
+        /// <summary>
         /// Clones the specified vector.
-        ///</summary>
+        /// </summary>
         ///
-        /// @param source vector toclone
-        /// @return cloned vector
+        /// <param name="source">vector toclone</param>
+        /// <returns>cloned vector</returns>
+        /// 
         public static IVector3d clone(IVector3d source)
         {
             return new Vector3dImpl(source.x(), source.y(), source.z());
@@ -182,39 +192,45 @@ namespace CSharpVecMath
 
 
 
-    ///<summary>
-    ///
-    /// @author Michael Hoffer &lt;info@michaelhoffer.de&gt;
-    ///</summary>
+    /// <summary>
+    /// The base interface for all vector3d types.
+    /// </summary>
+    /// 
+    /// author: Michael Hoffer &lt;info@michaelhoffer.de&gt;
+    /// 
     public interface IVector3d
     {
 
-        ///<summary>
-        /// Returns the {@code x} component of this vector.
-        ///</summary>
+        /// <summary>
+        /// Returns the <c>x</c> component of this vector.
+        /// </summary>
         ///
-        /// @return the {@code x} component of this vector
+        /// <returns>the <c>x</c> component of this vector</returns>
+        /// 
         double getX();
 
-        ///<summary>
-        /// Returns the {@code y} component of this vector.
-        ///</summary>
+        /// <summary>
+        /// Returns the <c>y</c> component of this vector.
+        /// </summary>
         ///
-        /// @return the {@code y} component of this vector
+        /// <returns>the <c>y</c> component of this vector</returns>
+        /// 
         double getY();
 
-        ///<summary>
-        /// Returns the {@code z} component of this vector.
-        ///</summary>
+        /// <summary>
+        /// Returns the <c>z</c> component of this vector.
+        /// </summary>
         ///
-        /// @return the {@code z} component of this vector
+        /// <returns>the <c>z</c> component of this vector</returns>
+        /// 
         double getZ();
 
-        ///<summary>
+        /// <summary>
         /// Returns a clone of this vector.
-        ///</summary>
+        /// </summary>
         ///
-        /// @return a clone of this vector
+        /// <returns>a clone of this vector</returns>
+        /// 
         IVector3d clone();
 
     }

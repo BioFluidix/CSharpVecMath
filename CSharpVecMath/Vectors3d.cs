@@ -43,7 +43,8 @@ namespace CSharpVecMath
     /// Utility class for generating large amounts of vectors.
     /// </summary>
     ///
-    /// @author Michael Hoffer (info@michaelhoffer.de)
+    /// author: Michael Hoffer (info@michaelhoffer.de)
+    /// 
     public sealed class Vectors3d
     {
 
@@ -56,8 +57,9 @@ namespace CSharpVecMath
         /// Converts the specified x-values to a list of vectors.
         /// </summary>
         ///
-        /// @param xValues x values
-        /// @return list of vectors
+        /// <param name="xValues">x values</param>
+        /// <returns>list of vectors</returns>
+        /// 
         public static List<IVector3d> x(params double[] xValues)
         {
             return xValues.Select(x => Vector3d.x(x)).ToList();
@@ -67,8 +69,9 @@ namespace CSharpVecMath
         /// Converts the specified y-values to a list of vectors.
         /// </summary>
         ///
-        /// @param yValues y values
-        /// @return list of vectors
+        /// <param name="yValues">y values</param>
+        /// <returns>list of vectors</returns>
+        /// 
         public static List<IVector3d> y(params double[] yValues)
         {
             return yValues.Select(y => Vector3d.y(y)).ToList();
@@ -78,8 +81,9 @@ namespace CSharpVecMath
         /// Converts the specified z-values to a list of vectors.
         /// </summary>
         ///
-        /// @param zValues z values
-        /// @return list of vectors
+        /// <param name="zValues">z values</param>
+        /// <returns>list of vectors</returns>
+        /// 
         public static List<IVector3d> z(params double[] zValues)
         {
             return zValues.Select(z => Vector3d.z(z)).ToList();
@@ -89,8 +93,9 @@ namespace CSharpVecMath
         /// Converts the specified (x,y)-values to a list of vectors.
         /// </summary>
         ///
-        /// @param xyValues (x,y) values
-        /// @return list of vectors
+        /// <param name="xyValues">(x,y) values</param>
+        /// <returns>list of vectors</returns>
+        /// 
         public static List<IVector3d> xy(params double[] xyValues)
         {
 
@@ -108,8 +113,9 @@ namespace CSharpVecMath
         /// Converts the specified (x,z)-values to a list of vectors.
         /// </summary>
         ///
-        /// @param xzValues (x,z) values
-        /// @return list of vectors
+        /// <param name="xzValues">(x,z) values</param>
+        /// <returns>list of vectors</returns>
+        /// 
         public static List<IVector3d> xz(params double[] xzValues)
         {
 
@@ -127,8 +133,9 @@ namespace CSharpVecMath
         /// Converts the specified (y,z)-values to a list of vectors.
         /// </summary>
         ///
-        /// @param yzValues (y,z) values
-        /// @return list of vectors
+        /// <param name="yzValues">(y,z) values</param>
+        /// <returns>list of vectors</returns>
+        /// 
         public static List<IVector3d> yz(params double[] yzValues)
         {
 
@@ -146,8 +153,9 @@ namespace CSharpVecMath
         /// Converts the specified (x,y,z)-values to a list of vectors.
         /// </summary>
         ///
-        /// @param xyzValues (x,y,z) values
-        /// @return list of vectors
+        /// <param name="xyzValues">(x,y,z) values</param>
+        /// <returns>list of vectors</returns>
+        /// 
         public static List<IVector3d> xyz(params double[] xyzValues)
         {
 

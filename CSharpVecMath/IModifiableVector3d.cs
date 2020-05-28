@@ -41,24 +41,27 @@ namespace CSharpVecMath
     /// Modifiable 3d vector.
     /// </summary>
     /// 
-    /// @author Michael Hoffer (info@michaelhoffer.de)
+    /// author: Michael Hoffer (info@michaelhoffer.de)
+    /// 
     public interface IModifiableVector3d : IVector3d
     {
 
         /// <summary>
         /// Sets the specified vector components.
         /// </summary>
-        /// @param xyz vector components to set (number of components {@code <= 3} are valid)
-        /// @return this vector
+        /// 
+        /// <param name="xyz">vector components to set (number of components <c><= 3</c> are valid)</param>
+        /// <returns>this vector</returns>
         /// 
         IVector3d set(params double[] xyz);
 
         /// <summary>
         /// Sets the i-th component of this vector.
         /// </summary>
-        /// @param i component index
-        /// @param value value to set
-        /// @return this vector
+        /// 
+        /// <param name="i">component index</param>
+        /// <param name="value">value to set</param>
+        /// <returns>this vector</returns>
         /// 
         IVector3d set(int i, double value);
 

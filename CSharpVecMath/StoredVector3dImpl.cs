@@ -35,8 +35,12 @@
 
 namespace CSharpVecMath
 {
+    /// <summary>
+    /// A vector which uses a reference of a double array as a storage
+    /// for its elements and is modifiable.
+    /// </summary>
     /// 
-    /// @author Michael Hoffer <info@michaelhoffer.de>
+    /// author: Michael Hoffer <info@michaelhoffer.de>
     /// 
     public class StoredVector3dImpl : IModifiableStoredVector3d
     {
